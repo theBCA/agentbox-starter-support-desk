@@ -1,0 +1,774 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Support Desk",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Health Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/process": {
+      "post": {
+        "summary": "Process Message",
+        "operationId": "process_message_process_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/process/upload": {
+      "post": {
+        "summary": "Process Upload",
+        "operationId": "process_upload_process_upload_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_process_upload_process_upload_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/find-customer": {
+      "post": {
+        "summary": "Find Customer Via Mcp",
+        "description": "Read the customer system through the bridge, as the agent's own\n`find_customer` does. The server declares the operation read-only, so the\nbridge never holds it -- the same call the agent makes in step 4.",
+        "operationId": "find_customer_via_mcp_mcp_find_customer_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FindCustomerRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BridgeCallResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/save-interaction": {
+      "post": {
+        "summary": "Save Interaction Via Mcp",
+        "description": "Write a note to a customer's record through the bridge: an ordinary\nwrite, allowed under the grant and recorded.",
+        "operationId": "save_interaction_via_mcp_mcp_save_interaction_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveInteractionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BridgeCallResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/purge-inactive-customers": {
+      "post": {
+        "summary": "Purge Inactive Customers Via Mcp",
+        "description": "Ask to delete old customer records -- and expect to be stopped.\n\n`purge_inactive_customers` is classified DESTRUCTIVE by the bridge's own\nclassifier, which makes it a sensitive operation: the call is held and\nqueued for an operator instead of executed, and the answer here is a 502\ncarrying the bridge's own sentence and the approval id. Approve or deny it\nunder Security, then call this again.",
+        "operationId": "purge_inactive_customers_via_mcp_mcp_purge_inactive_customers_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurgeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BridgeCallResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/demo/touch-agent-file": {
+      "post": {
+        "summary": "Touch Agent File",
+        "description": "Write a file containing a canonical, harmless prompt-injection test\nstring into the agent-files directory, to demonstrate AFG's\ncontent scanner actually catching something. The same-container\nwatcher (agentbox.agentic_files_notifier) relays any write under this\ndirectory to AFG, which scans file *content* for known\nprompt-injection patterns \u2014 a clean/benign write produces no finding\nand (by design) no audit entry, so an earlier version of this demo\nthat just wrote a timestamp silently did nothing observable. This\nstring matches AFG's \"ignore previous instructions\" and\n\"system-prompt extraction\" rules on purpose, so a real CRITICAL\nfinding + audit event actually appears in Security > Audit Log.",
+        "operationId": "touch_agent_file_demo_touch_agent_file_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AfgDemoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/process/stream": {
+      "post": {
+        "summary": "Process Message Streaming",
+        "description": "Same work as /process, but emitting the agent's turns as they happen.\n\n/process returns one JSON object after the agent has finished, which shows\nthe result and hides the agency -- and the agency is what AgentBox is\nsecuring. This streams `token` events as text arrives and a `tool` event\neach time the agent calls something, so an operator can watch the loop run\ninside the sandbox rather than infer it afterwards -- and a `tool_result`\nevent with the platform's verdict on each call (`app/agent_tools.py`).\n\nErrors after the first byte cannot become an HTTP status: the response has\nalready started with 200. They are sent as a terminal `error` event\ninstead, which is why the policy mapping below is duplicated rather than\nshared with _run_backend.",
+        "operationId": "process_message_streaming_process_stream_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/demo/install-package": {
+      "post": {
+        "summary": "Install Package Via Package Guard",
+        "description": "Install a package, and report what Package Guard decided about it.\n\nThe one control a customer could not previously reach from anywhere in the\nproduct: the admin console can list and decide Package Guard approvals, but\nnothing could CREATE one, so the queue was permanently empty and the whole\npackage-governance story was invisible unless you had a shell on the host.\n\nThree outcomes are worth trying, and they are policy decisions, not\nfailures -- a non-zero exit code here usually means the platform worked:\n\n  allow  an allowlisted package installs normally\n  block  a denylisted package is refused before anything is downloaded\n  hold   anything else is parked for approval, which is the entry that\n         then appears in Security -> Package Guard approvals for you to decide",
+        "operationId": "install_package_via_package_guard_demo_install_package_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstallPackageRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstallPackageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/demo/fetch-url": {
+      "post": {
+        "summary": "Fetch Url Through Secureproxy",
+        "description": "Try to open an outbound tunnel, and report SecureProxy's own answer.\n\nThis app has no route to the internet except SecureProxy's forward proxy,\nwhich enforces the egress policy on its Applications-tab record. Shipped\npolicy is whitelist with an empty list, so every destination is refused:\nexpect `status: 403`.\n\nTo see the other half, add the host to Allowed destinations on this\napplication and call it again -- `status: 200` means the tunnel opened.\nThat before-and-after is the demonstration; a single call only shows one\nside of a policy that was never visibly doing anything.",
+        "operationId": "fetch_url_through_secureproxy_demo_fetch_url_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FetchUrlRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FetchUrlResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/concept": {
+      "get": {
+        "summary": "Concept",
+        "description": "The concept this application runs, for its own page.\n\nName, tagline, the eight steps (title, sub, who, the literal prompt), the\nsentence for each outcome on the protected and the unprotected side, the\nplain labels for tool calls, and the scorecard lines -- everything the\npage shows that is not derived from a live signal.\n\n`protected`, `agent_type` and `built_with` are deliberately NOT in here:\nthe page derives them from `GET /runtime-info` and the environment, so a\nconcept file can never claim a posture.",
+        "operationId": "concept_concept_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Concept Concept Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/runtime-info": {
+      "get": {
+        "summary": "Runtime Info",
+        "description": "What this app can observe about its own confinement.\n\nThe console at `/` renders this as its banner, which is why it exists: a\ndemo page that claimed to be protected because a build flag said so would\nbe a claim, not evidence. Every field here is derived from what the\nplatform actually put in this container.\n\nSafe to expose on the app's own port. It reports THAT each variable is set\nand never what it holds -- every proxy variable an app receives carries\nthis app's virtual key as its credential, so the values are withheld\nrather than trusted to be uninteresting. See `app/posture.py`.",
+        "operationId": "runtime_info_runtime_info_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Runtime Info Runtime Info Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AfgDemoResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok"
+          },
+          "path": {
+            "type": "string",
+            "title": "Path"
+          },
+          "note": {
+            "type": "string",
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok",
+          "path",
+          "note"
+        ],
+        "title": "AfgDemoResponse"
+      },
+      "Body_process_upload_process_upload_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          },
+          "question": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Question"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_process_upload_process_upload_post"
+      },
+      "BridgeCallResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok"
+          },
+          "bridge_server": {
+            "type": "string",
+            "title": "Bridge Server"
+          },
+          "bridge_tool": {
+            "type": "string",
+            "title": "Bridge Tool"
+          },
+          "result": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Result"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok",
+          "bridge_server",
+          "bridge_tool",
+          "result"
+        ],
+        "title": "BridgeCallResponse"
+      },
+      "FetchUrlRequest": {
+        "properties": {
+          "host": {
+            "type": "string",
+            "title": "Host"
+          },
+          "port": {
+            "type": "integer",
+            "title": "Port",
+            "default": 443
+          }
+        },
+        "type": "object",
+        "required": [
+          "host"
+        ],
+        "title": "FetchUrlRequest"
+      },
+      "FetchUrlResponse": {
+        "properties": {
+          "host": {
+            "type": "string",
+            "title": "Host"
+          },
+          "port": {
+            "type": "integer",
+            "title": "Port"
+          },
+          "proxied": {
+            "type": "boolean",
+            "title": "Proxied"
+          },
+          "status": {
+            "type": "integer",
+            "title": "Status"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason"
+          },
+          "allowed": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allowed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "host",
+          "port",
+          "proxied",
+          "status",
+          "reason"
+        ],
+        "title": "FetchUrlResponse"
+      },
+      "FindCustomerRequest": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query"
+          }
+        },
+        "type": "object",
+        "required": [
+          "query"
+        ],
+        "title": "FindCustomerRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "InstallPackageRequest": {
+        "properties": {
+          "package": {
+            "type": "string",
+            "title": "Package"
+          },
+          "manager": {
+            "type": "string",
+            "title": "Manager",
+            "default": "pip"
+          }
+        },
+        "type": "object",
+        "required": [
+          "package"
+        ],
+        "title": "InstallPackageRequest"
+      },
+      "InstallPackageResponse": {
+        "properties": {
+          "package": {
+            "type": "string",
+            "title": "Package"
+          },
+          "manager": {
+            "type": "string",
+            "title": "Manager"
+          },
+          "verdict": {
+            "type": "string",
+            "title": "Verdict"
+          },
+          "exit_code": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Exit Code"
+          },
+          "output": {
+            "type": "string",
+            "title": "Output"
+          },
+          "infra_failure": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Infra Failure"
+          }
+        },
+        "type": "object",
+        "required": [
+          "package",
+          "manager",
+          "verdict",
+          "output"
+        ],
+        "title": "InstallPackageResponse"
+      },
+      "ProcessRequest": {
+        "properties": {
+          "input": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Input"
+          },
+          "document": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Document"
+          },
+          "question": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Question"
+          }
+        },
+        "type": "object",
+        "title": "ProcessRequest",
+        "description": "One message to the agent.\n\n`input` is the message. `document` is the name it had when this app\nbriefed documents, kept as an alias so the admin console's presets and\nthe live suite -- which speak to all seven starters -- keep working while\nthe starters move one at a time."
+      },
+      "ProcessResponse": {
+        "properties": {
+          "answer": {
+            "type": "string",
+            "title": "Answer"
+          },
+          "backend": {
+            "type": "string",
+            "title": "Backend"
+          },
+          "tool_calls": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Tool Calls",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "answer",
+          "backend"
+        ],
+        "title": "ProcessResponse"
+      },
+      "PurgeRequest": {
+        "properties": {
+          "years": {
+            "type": "integer",
+            "title": "Years",
+            "default": 5
+          }
+        },
+        "type": "object",
+        "title": "PurgeRequest"
+      },
+      "SaveInteractionRequest": {
+        "properties": {
+          "customer_id": {
+            "type": "string",
+            "title": "Customer Id"
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          }
+        },
+        "type": "object",
+        "required": [
+          "customer_id",
+          "summary"
+        ],
+        "title": "SaveInteractionRequest"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
