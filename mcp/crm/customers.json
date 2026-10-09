@@ -1,0 +1,411 @@
+[
+  {
+    "id": "C-1003",
+    "name": "Aylin Kaya",
+    "city": "Berlin",
+    "since": 2019,
+    "last_contact": "2026-09-21",
+    "orders": 9,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-1107",
+    "name": "Jonas Weber",
+    "city": "Hamburg",
+    "since": 2021,
+    "last_contact": "2026-09-21",
+    "orders": 3,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-1042",
+    "name": "Mara Lindqvist",
+    "city": "Stockholm",
+    "since": 2023,
+    "last_contact": "2026-09-21",
+    "orders": 6,
+    "status": "active",
+    "notes": [
+      {
+        "date": "2025-11-04",
+        "summary": "Asked about a delayed delivery of order 87710; carrier trace opened, parcel arrived two days later. Case 4611."
+      },
+      {
+        "date": "2026-03-18",
+        "summary": "Requested an invoice copy for order 87995; sent. Case 4702."
+      }
+    ]
+  },
+  {
+    "id": "C-1021",
+    "name": "Tom Becker",
+    "city": "Munich",
+    "since": 2024,
+    "last_contact": "2026-09-21",
+    "orders": 2,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-1028",
+    "name": "Priya Nair",
+    "city": "Vienna",
+    "since": 2022,
+    "last_contact": "2026-09-22",
+    "orders": 5,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2035",
+    "name": "Lukas Schmidt",
+    "city": "Zurich",
+    "since": 2023,
+    "last_contact": "2019-06-06",
+    "orders": 2,
+    "status": "inactive",
+    "notes": []
+  },
+  {
+    "id": "C-2042",
+    "name": "Sofia Rossi",
+    "city": "Copenhagen",
+    "since": 2019,
+    "last_contact": "2026-07-07",
+    "orders": 5,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2049",
+    "name": "Emre Demir",
+    "city": "Oslo",
+    "since": 2024,
+    "last_contact": "2026-08-08",
+    "orders": 8,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2056",
+    "name": "Hannah Fischer",
+    "city": "Rotterdam",
+    "since": 2020,
+    "last_contact": "2026-09-09",
+    "orders": 11,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2063",
+    "name": "Noah Meyer",
+    "city": "Antwerp",
+    "since": 2016,
+    "last_contact": "2019-10-10",
+    "orders": 14,
+    "status": "inactive",
+    "notes": []
+  },
+  {
+    "id": "C-2070",
+    "name": "Leyla Aydin",
+    "city": "Leipzig",
+    "since": 2021,
+    "last_contact": "2026-11-11",
+    "orders": 3,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2077",
+    "name": "Felix Wagner",
+    "city": "Bremen",
+    "since": 2017,
+    "last_contact": "2026-12-12",
+    "orders": 6,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2084",
+    "name": "Zeynep Yilmaz",
+    "city": "Cologne",
+    "since": 2022,
+    "last_contact": "2026-01-13",
+    "orders": 9,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2091",
+    "name": "Mateo Garcia",
+    "city": "Graz",
+    "since": 2018,
+    "last_contact": "2026-02-14",
+    "orders": 12,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2098",
+    "name": "Ida Nilsen",
+    "city": "Basel",
+    "since": 2023,
+    "last_contact": "2018-03-15",
+    "orders": 1,
+    "status": "inactive",
+    "notes": []
+  },
+  {
+    "id": "C-2105",
+    "name": "Ravi Patel",
+    "city": "Aarhus",
+    "since": 2019,
+    "last_contact": "2026-04-16",
+    "orders": 4,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2112",
+    "name": "Clara Hoffmann",
+    "city": "Malmo",
+    "since": 2024,
+    "last_contact": "2026-05-17",
+    "orders": 7,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2119",
+    "name": "Deniz Celik",
+    "city": "Utrecht",
+    "since": 2020,
+    "last_contact": "2026-06-18",
+    "orders": 10,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2126",
+    "name": "Oskar Berg",
+    "city": "Dresden",
+    "since": 2016,
+    "last_contact": "2026-07-19",
+    "orders": 13,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2133",
+    "name": "Nadia Haddad",
+    "city": "Freiburg",
+    "since": 2021,
+    "last_contact": "2026-08-20",
+    "orders": 2,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2140",
+    "name": "Elias Lange",
+    "city": "Hamburg",
+    "since": 2017,
+    "last_contact": "2026-09-21",
+    "orders": 5,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2147",
+    "name": "Yara Saleh",
+    "city": "Berlin",
+    "since": 2022,
+    "last_contact": "2026-10-22",
+    "orders": 8,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2154",
+    "name": "Milan Novak",
+    "city": "Stockholm",
+    "since": 2018,
+    "last_contact": "2018-11-23",
+    "orders": 11,
+    "status": "inactive",
+    "notes": []
+  },
+  {
+    "id": "C-2161",
+    "name": "Amira Farouk",
+    "city": "Munich",
+    "since": 2023,
+    "last_contact": "2026-12-24",
+    "orders": 14,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2168",
+    "name": "Finn Jensen",
+    "city": "Vienna",
+    "since": 2019,
+    "last_contact": "2026-01-25",
+    "orders": 3,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2175",
+    "name": "Selin Arslan",
+    "city": "Zurich",
+    "since": 2024,
+    "last_contact": "2026-02-26",
+    "orders": 6,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2182",
+    "name": "Jakob Krause",
+    "city": "Copenhagen",
+    "since": 2020,
+    "last_contact": "2026-03-27",
+    "orders": 9,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2189",
+    "name": "Lena Vogel",
+    "city": "Oslo",
+    "since": 2016,
+    "last_contact": "2019-04-01",
+    "orders": 12,
+    "status": "inactive",
+    "notes": []
+  },
+  {
+    "id": "C-2196",
+    "name": "Omar Rahman",
+    "city": "Rotterdam",
+    "since": 2021,
+    "last_contact": "2026-05-02",
+    "orders": 1,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2203",
+    "name": "Greta Brandt",
+    "city": "Antwerp",
+    "since": 2017,
+    "last_contact": "2026-06-03",
+    "orders": 4,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2210",
+    "name": "Kian Petrov",
+    "city": "Leipzig",
+    "since": 2022,
+    "last_contact": "2026-07-04",
+    "orders": 7,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2217",
+    "name": "Mira Koch",
+    "city": "Bremen",
+    "since": 2018,
+    "last_contact": "2026-08-05",
+    "orders": 10,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2224",
+    "name": "Paul Richter",
+    "city": "Cologne",
+    "since": 2023,
+    "last_contact": "2026-09-06",
+    "orders": 13,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2231",
+    "name": "Esra Sahin",
+    "city": "Graz",
+    "since": 2019,
+    "last_contact": "2019-10-07",
+    "orders": 2,
+    "status": "inactive",
+    "notes": []
+  },
+  {
+    "id": "C-2238",
+    "name": "Theo Braun",
+    "city": "Basel",
+    "since": 2024,
+    "last_contact": "2026-11-08",
+    "orders": 5,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2245",
+    "name": "Nina Klein",
+    "city": "Aarhus",
+    "since": 2020,
+    "last_contact": "2026-12-09",
+    "orders": 8,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2252",
+    "name": "Arda Polat",
+    "city": "Malmo",
+    "since": 2016,
+    "last_contact": "2026-01-10",
+    "orders": 11,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2259",
+    "name": "Julia Neumann",
+    "city": "Utrecht",
+    "since": 2021,
+    "last_contact": "2026-02-11",
+    "orders": 14,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2266",
+    "name": "Samir Khan",
+    "city": "Dresden",
+    "since": 2017,
+    "last_contact": "2026-03-12",
+    "orders": 3,
+    "status": "active",
+    "notes": []
+  },
+  {
+    "id": "C-2273",
+    "name": "Marlene Schulz",
+    "city": "Freiburg",
+    "since": 2022,
+    "last_contact": "2026-04-13",
+    "orders": 6,
+    "status": "active",
+    "notes": []
+  }
+]

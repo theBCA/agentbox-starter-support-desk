@@ -1,0 +1,11 @@
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30,<1
+pydantic>=2,<3
+python-multipart>=0.0.9,<1
+# Explicit, not transitive: app/egress.py uses it for outbound HTTPS.
+# httpx spells Proxy-Authorization correctly on a CONNECT tunnel (plain
+# urllib does not, and is silently answered 407), and it reads
+# SSL_CERT_FILE/REQUESTS_CA_BUNDLE from the image AgentBox built -- the two
+# requirements of reaching the internet from inside an app container.
+httpx>=0.27,<1
+claude-agent-sdk>=0.2,<1
